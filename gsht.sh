@@ -5,38 +5,57 @@ gsht()
     (
         source ./preg_quote.sh
 
-        local temporal_extension=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo '')
-        local line=""
-        local script_filename=$1
-        local temporal_output=${2:-src/$(basename $1 .sh)}
-        local self="$0"
+        source ./console.sh
+        source ./version.sh
 
-        mkdir -p bin
+        # Request
 
-        if [[ ! -f "$script_filename" ]]; then
-           exit 2
+        source ./input.sh
+
+        # Guard Clauses
+
+        if [[ ${Input__version} -eq 1 ]]; then
+            die "$(version)"
         fi
 
-        local script_dir=$(dirname "$1")
+        if [[ ${Input__help} -eq 1 ]]; then
+            die "$(version)"
+        fi
 
-        cp ${script_filename} ${temporal_output}
+        if [[ -z "$Input__in_file" && ${#Input__extra_args[@]} -eq 0  ]]; then
+            die "input file is required." 1
+        fi
 
-        grep -E "^source\s(.*)(\..*)*$" ${script_filename} | while read -r line; do
+        # Declare
+
+        local line
+        local self="$0"
+        local in_file="${Input__in_file:-${Input__extra_args[0]}}"
+        local tmp_ext=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo '')
+        local in_dir=$(dirname "$in_file")
+
+        out_file=${Input__out_file:-${in_dir:-.}/$(basename "$in_file" .sh)}
+        out_dir=$(dirname "$out_file")
+
+        mkdir -p "$out_dir"
+
+        cp ${in_file} ${out_file}
+
+        grep -E "source\s(.*)(\..*)*$" ${in_file} | while read -r line; do
 
             local search="$line"
             local import=$(echo "$line" | sed 's/source\s\s*//g')
 
-            ${self} "$script_dir/$import" "$script_dir/$import.$temporal_extension"
+            ${self} --input "$in_dir/$import" --output "$in_dir/$import.$tmp_ext"
 
-            local source=$(tail -n +2 "$script_dir/$import.$temporal_extension")
+            local source=$(tail -n +2 "$in_dir/$import.$tmp_ext")
 
-            rm "$script_dir/$import.$temporal_extension"
+            rm "$in_dir/$import.$tmp_ext"
 
             local source_escaped=$(preg_quote "$source")
             local search_escaped=$(preg_quote "$search")
 
-            sed 's/'"$search_escaped"'/'"$source_escaped"'/g' ${temporal_output} > ${temporal_output}.tmp
-            mv -f ${temporal_output}.tmp ${temporal_output}
+            sed -i 's/'"$search_escaped"'/'"$source_escaped"'/g' ${out_file}
         done
     )
 }
