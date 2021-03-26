@@ -58,6 +58,10 @@ gsht()
 
             sed -i 's/'"$search_escaped"'/'"$source_escaped"'/g' ${out_file}
         done
+
+        if [[ ${Input__watch} -eq 1 ]]; then
+            watch "${self} --input '$Input__in_file' --output='$Input__out_file'"
+        fi
     )
 }
 

@@ -110,12 +110,21 @@ echo "file 4 here!"
 echo "file 2 here!"
 ```
 
+### Watching Assets For Changes
+
+`gsht` offers the `watch` option which will continue to run in your terminal and watch all files re-transpiling 
+automatically:
+
+```bash
+gsht --watch --input source --output target
+```
+
 ## Improvements
 
 - Evaluation of imports with calculated path.
   ```bash
   current_dir=$(dirname "${BASH_SOURCE[0]}")
-  source "$current_dir/sub-folder/file-4.sh"
+  source "$current_dir/sub-folder/file.sh"
   ```
 
 ## Tests

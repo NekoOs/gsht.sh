@@ -6,6 +6,7 @@
 Input__help=0
 Input__verbose=0
 Input__version=0
+Input__watch=0
 Input__out_file=
 Input__in_file=
 Input__extra_args=()
@@ -17,7 +18,7 @@ if [[ $? -ne 4 ]]; then
 fi
 
 SHORT=hvVi:o:
-LONG=help,version,verbose,input:,output:
+LONG=help,version,verbose,input:,output:,watch
 
 PARSED=$(getopt --options ${SHORT} \
                 --longoptions ${LONG} \
@@ -42,12 +43,16 @@ do
         -V|--verbose)
             Input__verbose=1
             ;;
+        -i|--input)
+            Input__in_file="$2";
+            shift
+            ;;
         -o|--output)
             Input__out_file="$2";
             shift
             ;;
-        -i|--input)
-            Input__in_file="$2";
+        --watch)
+            Input__watch=1;
             shift
             ;;
         --)

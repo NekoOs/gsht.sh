@@ -109,12 +109,22 @@ echo "file 4 here!"
 echo "file 2 here!"
 ```
 
+# Observación de cambios en los activos
+
+`gsht` ofrece la opción `watch` que continuará ejecutándose en su terminal y observará todos los archivos 
+re-transpilando automáticamente:
+
+```bash
+gsht --watch --input source --output target
+```
+
+
 ## Mejoras
 
 - Evaluación de importaciones con path calculado.
   ```bash
   current_dir=$(dirname "${BASH_SOURCE[0]}")
-  source "$current_dir/sub-folder/file-4.sh"
+  source "$current_dir/sub-folder/file.sh"
   ```
 
 ## Pruebas
