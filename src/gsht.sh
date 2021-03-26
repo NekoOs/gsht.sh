@@ -3,14 +3,14 @@
 gsht()
 {
     (
-        source ./preg_quote.sh
+        source preg_quote.sh
 
-        source ./console.sh
-        source ./version.sh
+        source console.sh
+        source version.sh
 
         # Request
 
-        source ./input.sh
+        source input.sh
 
         # Guard Clauses
 
@@ -29,12 +29,13 @@ gsht()
         # Declare
 
         local line
+        local out_dir
         local self="$0"
         local in_file="${Input__in_file:-${Input__extra_args[0]}}"
         local tmp_ext=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo '')
         local in_dir=$(dirname "$in_file")
 
-        out_file=${Input__out_file:-${in_dir:-.}/$(basename "$in_file" .sh)}
+        out_file=${out_dir:-.}/${Input__out_file:-$(basename "$in_file" .sh)}
         out_dir=$(dirname "$out_file")
 
         mkdir -p "$out_dir"
