@@ -1,0 +1,19 @@
+on: push
+name: release
+jobs:
+  deploy:
+    name: generate release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout branch
+        uses: actions/checkout@v1
+      - name: make script
+        run: cd src && ./gsht.sh gsht.sh --output ../bin/gsht
+      - name: create tag release
+        uses: eine/tip@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: 'nightly'
+          files: |
+            ./bin/*
+
