@@ -17,6 +17,7 @@ command:
 ```bash
 curl -L https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht > gsht
 ```
+
 ```bash
 wget https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht
 ```
@@ -32,7 +33,7 @@ wget https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht
 Imagine a structure like this:
 
 ```text
-/ our-project-path
+/our-project-path
  ├── sub-folder
  │ └── sub-folder
  │ │ └── file-4.sh
@@ -102,6 +103,14 @@ echo "file 4 here!"
 
 echo "file 2 here!"
 ```
+
+## Improvements
+
+- Evaluation of imports with calculated path.
+  ```bash
+  current_dir=$(dirname "${BASH_SOURCE[0]}")
+  source "$current_dir/sub-folder/file-4.sh"
+  ```
 
 ## Tests
 
