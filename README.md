@@ -1,5 +1,11 @@
 # Global Shell Transpiler
 
+<p style="text-align: center;" align="center">
+  <a href="https://github.com/NekoOs/gsht.sh/actions"> 
+     <img alt="badge" src="https://github.com/NekoOs/gsht.sh/actions/workflows/package.yml/badge.svg">
+  </a>
+</p>
+
 Translations: [English](README.md) - [Español](README.es_ES.md)
 
 ## About
