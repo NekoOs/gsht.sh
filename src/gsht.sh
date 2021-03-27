@@ -31,32 +31,42 @@ gsht()
         local line
         local out_dir
         local self="$0"
-        local in_file="${Input__in_file:-${Input__extra_args[0]}}"
-        local tmp_ext=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo '')
-        local in_dir=$(dirname "$in_file")
+        local in_file
+        local tmp_ext
+        local in_dir
 
+        in_file="${Input__in_file:-${Input__extra_args[0]}}"
+        tmp_ext=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo '')
+        in_dir=$(dirname "$in_file")
         out_file=${out_dir:-.}/${Input__out_file:-$(basename "$in_file" .sh)}
         out_dir=$(dirname "$out_file")
 
         mkdir -p "$out_dir"
 
-        cp ${in_file} ${out_file}
+        cp "$in_file" "$out_file"
 
-        grep -E "source\s(.*)(\..*)*$" ${in_file} | while read -r line; do
+        grep -E "source\s(.*)(\..*)*$" "$in_file" | while read -r line; do
 
-            local search="$line"
-            local import=$(echo "$line" | sed 's/source\s\s*//g')
+            local search
+            local import
+            local source
+            local source_escaped
+            local search_escaped
+
+            search="$line"
+            import=${line//source/}
+            import=${import//[[:space:]]/}
 
             ${self} --input "$in_dir/$import" --output "$in_dir/$import.$tmp_ext"
 
-            local source=$(tail -n +2 "$in_dir/$import.$tmp_ext")
+            source=$(tail -n +2 "$in_dir/$import.$tmp_ext")
 
             rm "$in_dir/$import.$tmp_ext"
 
-            local source_escaped=$(preg_quote "$source")
-            local search_escaped=$(preg_quote "$search")
+            source_escaped=$(preg_quote "$source")
+            search_escaped=$(preg_quote "$search")
 
-            sed -i 's/'"$search_escaped"'/'"$source_escaped"'/g' ${out_file}
+            sed -i 's/'"$search_escaped"'/'"$source_escaped"'/g' "$out_file"
         done
 
         if [[ ${Input__watch} -eq 1 ]]; then

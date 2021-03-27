@@ -25,7 +25,9 @@ PARSED=$(getopt --options ${SHORT} \
                 --name "$0" \
                 -- "$@")         #Pass all the args to this script to getopt
 
-if [[ $? -ne 0 ]]; then
+last_response=$?
+
+if [[ ${last_response} -ne 0 ]]; then
     exit 2
 fi
 
