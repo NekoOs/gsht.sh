@@ -24,7 +24,7 @@ preg_quote()
     escaped="${escaped//^/\\^}"
     escaped="${escaped//\$/\\\$}"
 
-    # remove newlines
+    # escape newlines
     escaped="${escaped//[$'\n']/\\n}"
 
     echo "$escaped"

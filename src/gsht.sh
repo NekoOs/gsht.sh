@@ -7,6 +7,7 @@ gsht()
 
         source console.sh
         source version.sh
+        source get_script_path.sh
 
         # Request
 
@@ -45,7 +46,7 @@ gsht()
 
         cp "$in_file" "$out_file"
 
-        grep -E "source\s(.*)(\..*)*$" "$in_file" | while read -r line; do
+        grep -E "^\s*source\s.*$" "$in_file" | while read -r line; do
 
             local search
             local import
@@ -54,8 +55,7 @@ gsht()
             local search_escaped
 
             search="$line"
-            import=${line//source/}
-            import=${import//[[:space:]]/}
+            import=$(get_script_path "$line")
 
             ${self} --input "$in_dir/$import" --output "$in_dir/$import.$tmp_ext"
 
