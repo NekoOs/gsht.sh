@@ -20,9 +20,10 @@ preg_quote()
     escaped="${escaped//\[/\\[}"
     escaped="${escaped//\]/\\]}"
 
-    # escape ^ and $
+    # escape especial chars: ^ $ &
     escaped="${escaped//^/\\^}"
     escaped="${escaped//\$/\\\$}"
+    escaped="${escaped//&/\\&}"
 
     # escape newlines
     escaped="${escaped//[$'\n']/\\n}"
