@@ -2,7 +2,7 @@ on:
   push:
     branches: [ develop ]
 
-name: release
+name: Create Draft
 jobs:
   deploy:
     name: generate release
