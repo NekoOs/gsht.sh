@@ -1,6 +1,7 @@
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - '*'
 
 name: Create Draft
 jobs:
@@ -16,7 +17,7 @@ jobs:
         uses: eine/tip@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: 'nightly'
+          tag: draft-${{ github.ref }}
           rm: true
           files: |
             ./bin/*
