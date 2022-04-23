@@ -21,11 +21,11 @@ To **install** or **update** `gsht`, you can download and run the script manuall
 command:
 
 ```bash
-curl -L https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht > gsht
+curl -L https://github.com/NekoOs/gsht.sh/releases/download/v0.1.0/gsht > gsht
 ```
 
 ```bash
-wget https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht
+wget https://github.com/NekoOs/gsht.sh/releases/download/v0.1.0/gsht
 ```
 
 > To use `gsht` globally place the generated file in the binaries directory
