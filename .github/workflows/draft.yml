@@ -17,7 +17,7 @@ jobs:
         uses: eine/tip@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: draft-${{ github.ref }}
+          tag: draft-${{ github.head_ref || github.ref_name }}
           rm: true
           files: |
             ./bin/*
