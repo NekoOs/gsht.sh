@@ -1,10 +1,11 @@
 # Global Shell Transpiler
 
-[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/)
-[![GitHub release](https://img.shields.io/github/release/NekoOs/gsht.sh)](https://GitHub.com/Naereen/StrapDown.js/releases/)
-[![build](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml)
-[![draft](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml)
-[![issues](https://img.shields.io/github/issues/NekoOs/gsht.sh)]()
+[![Language](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/)
+[![GitHub Release](https://img.shields.io/github/release/NekoOs/gsht.sh)](https://gitHub.com/NekoOs/gsht.sh/releases/latest)
+[![Github Build Action](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml)
+[![Github Draft Action](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml)
+[![Github Issues](https://img.shields.io/github/issues/NekoOs/gsht.sh)](https://github.com/NekoOs/gsht.sh/issues)
+[![Github Version Download](https://img.shields.io/github/downloads/NekoOs/gsht.sh/total)](https://github.com/NekoOs/gsht.sh/releases)
 
 Translations: [English](README.md) - [Español](README.es_ES.md)
 
