@@ -1,10 +1,10 @@
 # Global Shell Transpiler
 
-<p style="text-align: center;" align="center">
-  <a href="https://github.com/NekoOs/gsht.sh/actions"> 
-     <img alt="badge" src="https://github.com/NekoOs/gsht.sh/actions/workflows/package.yml/badge.svg">
-  </a>
-</p>
+[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/)
+[![GitHub release](https://img.shields.io/github/release/NekoOs/gsht.sh)](https://GitHub.com/Naereen/StrapDown.js/releases/)
+[![build](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml)
+[![draft](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml)
+[![issues](https://img.shields.io/github/issues/NekoOs/gsht.sh)]()
 
 Translations: [English](README.md) - [Español](README.es_ES.md)
 
