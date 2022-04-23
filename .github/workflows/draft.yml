@@ -15,7 +15,7 @@ jobs:
         run: cd src && ./gsht.sh gsht.sh --output ../bin/gsht
       - name: extract tag latest
         shell: bash
-        run: echo "##[set-output name=tag;]$(git describe --tags --abbrev=0 HEAD)"
+        run: echo "##[set-output name=tag;]$(git describe --tags --abbrev=0 HEAD | sed 's/-.*//g')"
         id: extract
       - name: create draft release
         uses: eine/tip@master
