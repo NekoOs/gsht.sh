@@ -3,10 +3,10 @@ on:
     branches:
       - '*'
 
-name: Create Latest Release For Branch On Tag
+name: draft
 jobs:
   deploy:
-    name: generate release
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
       - name: checkout branch

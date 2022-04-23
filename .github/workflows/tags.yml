@@ -2,12 +2,11 @@ on:
   push:
     tags:
       - 'v*'
-      - '!nightly'
+      - '!*-latest+*'
 
-name: Create Release
-
+name: build
 jobs:
-  build:
+  deploy:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
