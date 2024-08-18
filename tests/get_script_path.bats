@@ -31,3 +31,33 @@ load ../src/get_script_path.sh
   result="$(get_script_path "")"
   [ "$result" = '' ]
 }
+
+@test "Line with 'source' and tabs" {
+  result="$(get_script_path "source	/path/to/script.sh")"
+  [ "$result" = '/path/to/script.sh' ]
+}
+
+@test "Line with '.' notation" {
+  result="$(get_script_path ". /path/to/script.sh")"
+  [ "$result" = '/path/to/script.sh' ]
+}
+
+@test "Line with '.' notation and tabs" {
+  result="$(get_script_path ".		/path/to/script.sh")"
+  [ "$result" = '/path/to/script.sh' ]
+}
+
+@test "Line with 'source' and multiple spaces" {
+  result="$(get_script_path "source   /path/to/script.sh")"
+  [ "$result" = '/path/to/script.sh' ]
+}
+
+@test "Line with 'source' and comments after tabs" {
+  result="$(get_script_path "source	/path/to/script.sh	# this is a comment")"
+  [ "$result" = '/path/to/script.sh' ]
+}
+
+@test "Line with '.' and comments after spaces" {
+  result="$(get_script_path ". /path/to/script.sh  # another comment")"
+  [ "$result" = '/path/to/script.sh' ]
+}

@@ -6,9 +6,10 @@ get_script_path() {
     local comment_removed_line
     local final_path
 
-    # Remove 'source' only if it is at the beginning of the line, followed by a space
-    if [[ "$input_line" =~ ^source[[:space:]]+ ]]; then
-        stripped_line="${input_line#source }"
+    # Remove 'source' or '.' only if they're at the beginning of the line, followed by any whitespace
+    if [[ "$input_line" =~ ^[[:space:]]*(source|\.)[[:space:]]+ ]]; then
+        stripped_line="${input_line#*[[:space:]]}"
+        stripped_line="${stripped_line#*(source|\.)[[:space:]]}"
     else
         stripped_line="$input_line"
     fi
@@ -16,8 +17,8 @@ get_script_path() {
     # Remove anything after and including the first occurrence of a '#'
     comment_removed_line="${stripped_line%%#*}"
 
-    # Trim any trailing spaces
-    final_path="$(echo -e "${comment_removed_line}" | sed -e 's/[[:space:]]*$//')"
+    # Trim leading and trailing spaces
+    final_path="$(echo -e "${comment_removed_line}" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
 
     echo "$final_path"
 }
