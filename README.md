@@ -41,8 +41,8 @@ Imagine a structure like this:
 
 ```text
 /our-project-path
- ├── sub-folder
- │ └── sub-folder
+ ├── foo
+ │ └── bar
  │ │ └── file-4.sh
  │ └── file-3.sh
  ├── file-1.sh
@@ -51,35 +51,35 @@ Imagine a structure like this:
 
 Contents of the file `/our-project-path/file-1.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 1 here!"
 
-source ./sub-folder/file-3.sh
+source ./foo/file-3.sh
 ```
 
 Contents of the file `/our-project-path/file-2.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 2 here!"
 ```
 
-Contents of the file `/our-project-path/sub-folder/file-3.sh`
+Contents of the file `/our-project-path/foo/file-3.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 3 here!"
 
-source ./sub-folder/file-4.sh
+source ./bar/file-4.sh
 ```
 
-Contents of the file `/our-project-path/sub-folder/sub-folder/file-4.sh`
+Contents of the file `/our-project-path/foo/bar/file-4.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 4 here!"
@@ -90,7 +90,7 @@ source ../../file-2.sh
 Run the following:
 
 ```bash
-gsht /our-project-path/file-1.sh --output = file-1-transpilated
+gsht /our-project-path/file-1.sh --output file-transpiled
 ```
 
 > Only the input filename is required `gsht source [--output=target]`.
