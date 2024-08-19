@@ -128,10 +128,14 @@ gsht --watch --input source --output target
   source "$current_dir/sub-folder/file.sh"
   ```
 
-## Tests
+## Running Tests
+
+To run the tests, execute:
 
 ```bash
-./tests/01.sh # generated file ./bin/test-01-transpilated
+tests/run
 ```
+
+This script will automatically run all tests in the `tests/` directory using Bats.
 
 [1]: https://github.com/NekoOs/gsht.sh
