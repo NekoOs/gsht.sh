@@ -1,0 +1,9 @@
+[submodule "examples/deployment_automation/vendor/bats"]
+	path = examples/deployment_automation/vendor/bats
+	url = https://github.com/bats-core/bats-core.git
+[submodule "vendor/bats"]
+	path = vendor/bats
+	url = https://github.com/bats-core/bats-core.git
+[submodule "vendor/bats-core"]
+	path = vendor/bats-core
+	url = https://github.com/bats-core/bats-core.git
