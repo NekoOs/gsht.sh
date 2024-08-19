@@ -55,7 +55,6 @@ do
             ;;
         --watch)
             Input__watch=1;
-            shift
             ;;
         --)
             shift
