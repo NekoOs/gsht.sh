@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Get the directory of the script
+test_directory="$(cd "$(dirname "$0")" && pwd)"
+bats_executable="${test_directory}/../vendor/bats-core/bin/bats"
+
+# Check if the Bats executable exists
+if [[ ! -x "$bats_executable" ]]; then
+  echo "Error: Bats executable not found at $bats_executable or is not executable."
+  exit 1
+fi
+
+# Change to the test directory
+cd "$test_directory"
+
+# Run Bats on the current directory
+"$bats_executable" .
