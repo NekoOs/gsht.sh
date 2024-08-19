@@ -39,7 +39,11 @@ gsht()
         in_file="${Input__in_file:-${Input__extra_args[0]}}"
         tmp_ext=$(tr -dc A-Za-z0-9 </dev/urandom 2>/dev/null | head -c 13 ; echo '')
         in_dir=$(dirname "$in_file")
-        out_file=${out_dir:-.}/${Input__out_file:-$(basename "$in_file" .sh)}
+        if [[ "${Input__out_file:0:1}" == "/" ]]; then
+            out_file="${Input__out_file}"
+        else
+            out_file="${out_dir:-.}/${Input__out_file:-$(basename "$in_file" .sh)}"
+        fi
         out_dir=$(dirname "$out_file")
 
         mkdir -p "$out_dir"
