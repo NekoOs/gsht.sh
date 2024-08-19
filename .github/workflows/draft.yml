@@ -11,12 +11,21 @@ jobs:
     steps:
       - name: checkout branch
         uses: actions/checkout@v1
+
+      - name: Initialize submodules
+        run: git submodule update --init --recursive
+
       - name: make script
         run: cd src && ./gsht.sh gsht.sh --output ../bin/gsht
+
+      - name: run tests
+        run: tests/run
+
       - name: extract tag latest
         shell: bash
         run: echo "##[set-output name=tag;]$(git describe --tags --abbrev=0 HEAD | sed 's/-.*//g')"
         id: extract
+
       - name: create draft release
         uses: eine/tip@master
         with:
