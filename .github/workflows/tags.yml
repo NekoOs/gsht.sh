@@ -1,23 +1,26 @@
 on:
   push:
-    branches: [ master ]
+    tags:
+      - 'v*'
+      - '!*-latest+*'
 
-name: release
+name: build
 jobs:
   deploy:
-    name: generate release
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: checkout branch
-        uses: actions/checkout@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: make script
         run: cd src && ./gsht.sh gsht.sh --output ../bin/gsht
       - name: create tag release
         uses: eine/tip@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: 'nightly'
+          tag:  ${{ github.ref }}
           rm: true
           files: |
             ./bin/*
-
+          draft: false
+          prerelease: false

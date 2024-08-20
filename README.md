@@ -1,10 +1,11 @@
 # Global Shell Transpiler
 
-<p style="text-align: center;" align="center">
-  <a href="https://github.com/NekoOs/gsht.sh/actions"> 
-     <img alt="badge" src="https://github.com/NekoOs/gsht.sh/actions/workflows/package.yml/badge.svg">
-  </a>
-</p>
+[![Language](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/)
+[![GitHub Release](https://img.shields.io/github/release/NekoOs/gsht.sh)](https://gitHub.com/NekoOs/gsht.sh/releases/latest)
+[![Github Build Action](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml)
+[![Github Draft Action](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml)
+[![Github Issues](https://img.shields.io/github/issues/NekoOs/gsht.sh)](https://github.com/NekoOs/gsht.sh/issues)
+[![Github Version Download](https://img.shields.io/github/downloads/NekoOs/gsht.sh/total)](https://github.com/NekoOs/gsht.sh/releases)
 
 Translations: [English](README.md) - [Español](README.es_ES.md)
 
@@ -21,11 +22,11 @@ To **install** or **update** `gsht`, you can download and run the script manuall
 command:
 
 ```bash
-curl -L https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht > gsht
+curl -L https://github.com/NekoOs/gsht.sh/releases/download/v0.1.0/gsht > gsht
 ```
 
 ```bash
-wget https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht
+wget https://github.com/NekoOs/gsht.sh/releases/download/v0.1.0/gsht
 ```
 
 > To use `gsht` globally place the generated file in the binaries directory
@@ -40,8 +41,8 @@ Imagine a structure like this:
 
 ```text
 /our-project-path
- ├── sub-folder
- │ └── sub-folder
+ ├── foo
+ │ └── bar
  │ │ └── file-4.sh
  │ └── file-3.sh
  ├── file-1.sh
@@ -50,35 +51,35 @@ Imagine a structure like this:
 
 Contents of the file `/our-project-path/file-1.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 1 here!"
 
-source ./sub-folder/file-3.sh
+source ./foo/file-3.sh
 ```
 
 Contents of the file `/our-project-path/file-2.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 2 here!"
 ```
 
-Contents of the file `/our-project-path/sub-folder/file-3.sh`
+Contents of the file `/our-project-path/foo/file-3.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 3 here!"
 
-source ./sub-folder/file-4.sh
+source ./bar/file-4.sh
 ```
 
-Contents of the file `/our-project-path/sub-folder/sub-folder/file-4.sh`
+Contents of the file `/our-project-path/foo/bar/file-4.sh`
 
-```bash
+```
 #!/usr/bin/env bash
 
 echo "file 4 here!"
@@ -89,7 +90,7 @@ source ../../file-2.sh
 Run the following:
 
 ```bash
-gsht /our-project-path/file-1.sh --output = file-1-transpilated
+gsht /our-project-path/file-1.sh --output file-transpiled
 ```
 
 > Only the input filename is required `gsht source [--output=target]`.
@@ -121,16 +122,20 @@ gsht --watch --input source --output target
 
 ## Improvements
 
-- Evaluation of imports with calculated path.
-  ```bash
+- Evaluation of imports with calculated paths.
+  ```
   current_dir=$(dirname "${BASH_SOURCE[0]}")
   source "$current_dir/sub-folder/file.sh"
   ```
 
-## Tests
+## Running Tests
+
+To run the tests, execute:
 
 ```bash
-./tests/01.sh # generated file ./bin/test-01-transpilated
+tests/run
 ```
+
+This script will automatically run all tests in the `tests/` directory using Bats.
 
 [1]: https://github.com/NekoOs/gsht.sh

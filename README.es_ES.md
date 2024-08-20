@@ -1,10 +1,11 @@
 # Global Shell Transpiler
 
-<p style="text-align: center;" align="center">
-  <a href="https://github.com/NekoOs/gsht.sh/actions"> 
-     <img alt="badge" src="https://github.com/NekoOs/gsht.sh/actions/workflows/package.yml/badge.svg">
-  </a>
-</p>
+[![Language](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/)
+[![GitHub Release](https://img.shields.io/github/release/NekoOs/gsht.sh)](https://gitHub.com/NekoOs/gsht.sh/releases/latest)
+[![Github Build Action](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/tags.yml)
+[![Github Draft Action](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml/badge.svg)](https://github.com/NekoOs/gsht.sh/actions/workflows/draft.yml)
+[![Github Issues](https://img.shields.io/github/issues/NekoOs/gsht.sh)](https://github.com/NekoOs/gsht.sh/issues)
+[![Github Version Download](https://img.shields.io/github/downloads/NekoOs/gsht.sh/total)](https://github.com/NekoOs/gsht.sh/releases)
 
 Traducciones: [English](README.md) - [Español](README.es_ES.md)
 
@@ -21,10 +22,10 @@ Para **instalar** o **actualizar** `gsht`, puede descargar y ejecutar el script 
 cURL o Wget:
 
 ```bash
-curl -L https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht > gsht
+curl -L https://github.com/NekoOs/gsht.sh/releases/download/v0.1.0/gsht > gsht
 ```
 ```bash
-wget https://github.com/NekoOs/gsht.sh/releases/download/nightly/gsht
+wget https://github.com/NekoOs/gsht.sh/releases/download/v0.1.0/gsht
 ```
 
 > Para usar `gsht` de forma global coloque el fichero generado en el directorio de binarios
