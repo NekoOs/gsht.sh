@@ -14,11 +14,20 @@ Translations: [English](README.md) - [Español](README.es_ES.md)
 `gsht` is a shell script transpiler that allows you to divide source code in a modular way within a project,
 to later mix the different files implemented in a single file.
 
+### Lifecycle Diagram
+
+To better understand the workflow and the different stages involved in the process,
+we've provided a lifecycle diagram below.
+This diagram outlines the key steps from start to finish, highlighting how the components interact and how data
+flows through the system.
+
+![](assets/life_cycle.svg)
+
 ## Installation and update
 
 ### Installation and update script
 
-To **install** or **update** `gsht`, you can download and run the script manually, or I used the following cURL or Wget 
+To **install** or **update** `gsht`, you can download and run the script manually, or I used the following cURL or Wget
 command:
 
 ```bash
@@ -95,7 +104,7 @@ gsht /our-project-path/file-1.sh --output file-transpiled
 
 > Only the input filename is required `gsht source [--output=target]`.
 > If the name of the output file has not been specified, the script will default to a name based on the
-> input file, for example above something like this: `/our-current-path/file-1`
+> input file, for example, above something like this: `/our-current-path/file-1`
 
 The generated content will be:
 
@@ -113,20 +122,12 @@ echo "file 2 here!"
 
 ### Watching Assets For Changes
 
-`gsht` offers the `watch` option which will continue to run in your terminal and watch all files re-transpiling 
+`gsht` offers the `watch` option which will continue to run in your terminal and watch all files re-transpiling
 automatically:
 
 ```bash
 gsht --watch --input source --output target
 ```
-
-## Improvements
-
-- Evaluation of imports with calculated paths.
-  ```
-  current_dir=$(dirname "${BASH_SOURCE[0]}")
-  source "$current_dir/sub-folder/file.sh"
-  ```
 
 ## Running Tests
 
