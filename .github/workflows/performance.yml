@@ -1,0 +1,55 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+name: Performance
+jobs:
+  performance:
+    name: Check Performance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install hyperfine
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hyperfine
+
+      - name: Run performance tests with hyperfine
+        run: |
+          cd src && ./gsht.sh gsht.sh --output ../bin/gsht && cd ..
+          hyperfine --runs 1000 \
+            './bin/gsht ./src/gsht.sh' \
+            --export-markdown PERFORMANCE.md
+
+      - name: Validate performance
+        id: validate_performance
+        continue-on-error: false
+        run: |
+          while IFS='|' read -r _ _ mean _; do
+            mean_value=$(echo $mean | awk '{print $1}')
+
+            echo "Checking Mean: $mean_value ms"
+
+            if (( $(echo "$mean_value > 170" | bc -l) )); then
+              echo "Performance degradation detected! One or more values are greater than 170 ms in a row."
+              exit 1
+            fi
+          done < <(awk -F'|' 'NR>2 {print $0}' PERFORMANCE.md)
+
+      - name: Commit and push PERFORMANCE.md
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "actions@no-reply.github.com"
+          git config --local user.name "GitHub Actions"
+          git add PERFORMANCE.md
+          git commit -m "Update PERFORMANCE.md"
+          git push origin master
