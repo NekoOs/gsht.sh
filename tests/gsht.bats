@@ -1,7 +1,10 @@
 #!/usr/bin/env bats
 
 setup_file() {
+    cd "$(dirname "$BATS_TEST_FILENAME")" || exit
+
     (cd ../src && ./gsht.sh gsht.sh --output "$BATS_RUN_TMPDIR/gsht")
+
     chmod +x "$BATS_RUN_TMPDIR/gsht"
 }
 

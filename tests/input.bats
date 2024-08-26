@@ -1,5 +1,9 @@
 #!/usr/bin/env bats
 
+setup_file() {
+    cd "$(dirname "$BATS_TEST_FILENAME")" || exit
+}
+
 input() {
   source ../src/input.sh "$@"
 
